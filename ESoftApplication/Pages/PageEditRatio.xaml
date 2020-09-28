@@ -1,0 +1,85 @@
+﻿<Page x:Class="ESoftApplication.Pages.PageEditRatio"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ESoftApplication.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="628" d:DesignWidth="1200"
+      
+      Title="Изменение коэффициентов">
+
+    <Grid>
+        <StackPanel  Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+
+            <StackPanel.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Width" Value="70"></Setter>
+                    <Setter Property="Height" Value="22"></Setter>
+                    
+                </Style>
+
+                
+            </StackPanel.Resources>
+
+            <Label HorizontalAlignment="Center" >Коэффициенты гарантированного минимума зарплаты  (в рублях) :</Label>
+
+            <StackPanel HorizontalAlignment="Center" Margin="0 16 0 16" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"  >Junior:</TextBlock>
+                    <TextBox PreviewTextInput="Junior_PreviewTextInput" Name="Junior"  Margin="16 0 0 0" ></TextBox>
+                </StackPanel>
+                <StackPanel  Margin="16 0 16 0" Orientation="Horizontal">
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"  >Middle:</TextBlock>
+                    <TextBox PreviewTextInput="Middle_PreviewTextInput" Name="Middle"  Margin="16 0 0 0"></TextBox>
+                </StackPanel>
+                <StackPanel  Orientation="Horizontal">
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"  >Senior:</TextBlock>
+                    <TextBox PreviewTextInput="Senior_PreviewTextInput" Name="Senior"  Margin="16 0 0 0"></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+
+            <Label HorizontalAlignment="Center" >Коэффициент характера выполненных работ (от 0 до 1):</Label>
+
+            <StackPanel HorizontalAlignment="Center" Margin="0 16 0 16" Orientation="Horizontal">
+                <StackPanel Margin="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"  >Анализ и проектирование:</TextBlock>
+                    <TextBox PreviewTextInput="Analysis_PreviewTextInput" Name="Analysis"  Margin="16 0 16 0" ></TextBox>
+                </StackPanel>
+                <StackPanel  Margin="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"  >Установка оборудования:</TextBlock>
+                    <TextBox PreviewTextInput="Deployment_PreviewTextInput" Name="Deployment"  Margin="16 0 16 0" ></TextBox>
+                </StackPanel>
+                <StackPanel  Margin="0" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"  >Техническое обслуживание и сопровождение:</TextBlock>
+                    <TextBox PreviewTextInput="Support_PreviewTextInput" Name="Support" Margin="16 0 0 0" ></TextBox>
+                </StackPanel>
+            </StackPanel>
+
+            <Label HorizontalAlignment="Center" >Коэффициенты сложности и времени исполнения задач  (произвольные числа): </Label>
+            
+            <StackPanel Margin="0 16 0 16" HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock  >Коэффициент сложности:</TextBlock>
+                <TextBox PreviewTextInput="Difficulty_PreviewTextInput" Name="Difficulty" Margin="16 0 16 0"></TextBox>
+
+                <TextBlock  >Коэффициент времени:</TextBlock>
+                <TextBox PreviewTextInput="Time_PreviewTextInput" Name="Time"  Margin="16 0 0 0"></TextBox>
+            </StackPanel>
+
+            <Label HorizontalAlignment="Center" >дополнительный коэффициент для перевода абстрактного веса задачи в денежный эквивалент (произвольное число):</Label>
+            <StackPanel Margin="0 16 0 40" HorizontalAlignment="Center" Orientation="Horizontal">
+                <TextBlock  >Коэффициент :</TextBlock>
+                <TextBox PreviewTextInput="Transfer_PreviewTextInput" Name="Transfer" Margin="16 0 16 0"></TextBox>
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                <Button Width="160" Content="Сохранить" Click="Button_Click_1"/>
+                <Button Width="160" Margin="16 0 0 0" Content="Назад" Click="Button_Click"/>
+            </StackPanel>
+        </StackPanel>
+        
+        
+        
+    </Grid>
+</Page>

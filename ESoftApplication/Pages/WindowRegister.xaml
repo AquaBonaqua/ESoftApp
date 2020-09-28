@@ -1,0 +1,25 @@
+﻿<Window x:Class="ESoftApplication.Pages.WindowRegister"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ESoftApplication.Pages"
+        mc:Ignorable="d"
+        Title="WindowRegister" Height="450" Width="800">
+    <Grid>
+        <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
+
+            <TextBlock   >Логин:</TextBlock>
+            <TextBox   Margin="0 16 0 16" Name="TbLogin"   ></TextBox>
+            <TextBlock   >Новый пароль:</TextBlock>
+            <PasswordBox   Margin="0 16 0 16" Name="TbNewPassword"   ></PasswordBox>
+            <TextBlock   >Повторите пароль:</TextBlock>
+            <PasswordBox   Margin="0 16 0 32" Name="TbNewPassword2"   ></PasswordBox>
+            <StackPanel Orientation="Horizontal">
+                <Button Width="180" Margin="0 0 16 0" Name="btnSave" Click="btnSave_Click"  >Зарегистрироваться</Button>
+                <Button Width="180" Name="btnClose" Click="btnClose_Click"  >Закрыть</Button>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>

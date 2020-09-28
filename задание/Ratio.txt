@@ -1,0 +1,23 @@
+Gm - Manager - Junior,Middle,Senior
+Ti - Time
+Tc - TimeRatio
+Di - Difficulty
+Dc - DifficultyRatio
+Tb - TransferRatio
+Ci - Manager - Analysis,Equipment,Maintenance
+
+Status
+1 - Plan
+2 - Execute
+3 - Finish
+4 - Cancel
+
+Kind
+1 - Analysis
+2 - Deployment
+3 - Support
+
+Grade
+1 - Junior
+2 - Middle 
+3 - Senior

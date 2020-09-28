@@ -1,0 +1,50 @@
+﻿<Window x:Class="ESoftApplication.Pages.WindowTask"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="WindowTask" Height="483.6" Width="880.811">
+    <Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Height" Value="22"></Setter>
+                    <Setter Property="FontSize" Value="12"/>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel Margin="0 0 32 0" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock>Заголовок:</TextBlock>
+                <TextBox Name="Name" Margin="0 16 0 16"  ></TextBox>
+                <TextBlock>Описание:</TextBlock>
+                <TextBox Name="Info" Margin="0 16 0 16"  ></TextBox>
+                <TextBlock>Статус:</TextBlock>
+                <ComboBox Name="CmbStatus" Margin="0 16 0 16" ></ComboBox>
+                <TextBlock>Сложность:</TextBlock>
+                <TextBox Name="Difficulty" Margin="0 16 0 16" ></TextBox>
+                <TextBlock>Исполнитель:</TextBlock>
+                <ComboBox Name="CmbExecutor" Margin="0 16 0 16" ></ComboBox>
+
+            </StackPanel>
+            <StackPanel >
+
+
+
+                <TextBlock>Характер:</TextBlock>
+                <ComboBox Name="CmbKind" Margin="0 16 0 16"  ></ComboBox>
+                <TextBlock>Срок исполнения(дни):</TextBlock>
+                <TextBox Name="CompleteDays" Margin="0 16 0 16"  ></TextBox>
+                <TextBlock>Дата выполнения:</TextBlock>
+                <DatePicker Name="FinishDate" Margin="0 16 0 16"  ></DatePicker>
+                <TextBlock>Время на выполнение задачи(минуты):</TextBlock>
+                <TextBox Name="CompleteTime" Margin="0 16 0 20"  ></TextBox>
+                <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                    <Button Width="120" Margin="0 0 32 0" Name="Btn" Content="Сохранить" Click="Btn_Click"></Button>
+                    <Button Width="120" Content="Закрыть" Click="Button_Click"></Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

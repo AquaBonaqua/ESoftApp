@@ -1,0 +1,22 @@
+﻿<Page x:Class="ESoftApplication.Pages.PageManager"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ESoftApplication.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="628" d:DesignWidth="1200"
+      Title="Менеджер">
+
+    <Grid>
+        <Label HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 60 0 0" Name="HelloLabel"></Label>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+            
+            <Button  Content="Список задач" Click="Button_Click_2" />
+            <Button  Margin="0 16 0 16" Click="Button_Click_3" Content="Список исполнителей" />
+            <Button   Content="Управление коэффициентами" Click="Button_Click_1"/>
+            <Button  Margin="0 16 0 16" Content="Изменить пароль" Click="Button_Click_4"/>
+            <Button Content="Выход" Width="240" Click="Button_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

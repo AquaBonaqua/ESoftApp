@@ -1,0 +1,22 @@
+﻿<Page x:Class="ESoftApplication.Pages.PageLogin"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ESoftApplication.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="628" d:DesignWidth="1200"
+      Title="Авторизация">
+
+    <Grid>
+        <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
+            <TextBlock  >Логин:</TextBlock>
+            <TextBox Width="240" Height="32"  Margin="0 16 0 16" Name="TbLogin"  ></TextBox>
+            <TextBlock   >Пароль:</TextBlock>
+            <PasswordBox Width="240"   Name="TbPassword"   ></PasswordBox>
+            <Button Width="180" Margin="0 16 0 16" Name="btnLogin" Click="btnLogin_Click"  >Войти</Button>
+            <Button Width="180" Name="btnReg" Click="btnReg_Click"  >Регистрация</Button>
+        </StackPanel>
+        
+    </Grid>
+</Page>

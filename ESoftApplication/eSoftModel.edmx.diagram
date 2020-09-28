@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f2999fdef19447439ea0d465aa12aae2" Name="Diagram1">
+        <EntityTypeShape EntityType="eSoftModel.Coef" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="eSoftModel.Executor" Width="1.5" PointX="7.5" PointY="1.375" />
+        <EntityTypeShape EntityType="eSoftModel.Grade" Width="1.5" PointX="5.25" PointY="6.125" />
+        <EntityTypeShape EntityType="eSoftModel.GradeCoef" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="eSoftModel.Kind" Width="1.5" PointX="7.5" PointY="6" />
+        <EntityTypeShape EntityType="eSoftModel.Manager" Width="1.5" PointX="5.25" PointY="1.625" />
+        <EntityTypeShape EntityType="eSoftModel.Status" Width="1.5" PointX="7.5" PointY="9.375" />
+        <EntityTypeShape EntityType="eSoftModel.Task" Width="1.5" PointX="9.75" PointY="1" />
+        <AssociationConnector Association="eSoftModel.FK_Coef_GradeCoef" />
+        <AssociationConnector Association="eSoftModel.FK_Manager_Coef" />
+        <AssociationConnector Association="eSoftModel.FK_Executor_Grade" />
+        <AssociationConnector Association="eSoftModel.FK_Executor_Manager" />
+        <AssociationConnector Association="eSoftModel.FK_Task_Executor" />
+        <AssociationConnector Association="eSoftModel.FK_Task_Kind" />
+        <AssociationConnector Association="eSoftModel.FK_Task_Status" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

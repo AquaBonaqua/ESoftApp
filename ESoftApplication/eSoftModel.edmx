@@ -1,0 +1,570 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище eSoftModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Coef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Analysis" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Deployment" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Support" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Time" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Difficulty" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Transfer" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="GradeCoefId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Executor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="GradeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="ManagerId" Type="int" />
+          <Property Name="IV" Type="nvarchar(max)" />
+          <Property Name="V" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GradeCoef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Junior" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Middle" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Senior" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kind">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CoefId" Type="int" Nullable="false" />
+          <Property Name="IV" Type="nvarchar(max)" />
+          <Property Name="V" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Difficulty" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="KindId" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="FinishTime" Type="datetime" />
+          <Property Name="CompleteDate" Type="date" />
+          <Property Name="CompletePeriod" Type="int" />
+          <Property Name="CompleteTime" Type="int" />
+          <Property Name="Info" Type="nvarchar(max)" />
+          <Property Name="ExecutorId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Coef_GradeCoef">
+          <End Role="GradeCoef" Type="Self.GradeCoef" Multiplicity="1" />
+          <End Role="Coef" Type="Self.Coef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeCoef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Coef">
+              <PropertyRef Name="GradeCoefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Executor_Grade">
+          <End Role="Grade" Type="Self.Grade" Multiplicity="1" />
+          <End Role="Executor" Type="Self.Executor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Executor">
+              <PropertyRef Name="GradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Executor_Manager">
+          <End Role="Manager" Type="Self.Manager" Multiplicity="0..1" />
+          <End Role="Executor" Type="Self.Executor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Executor">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_Coef">
+          <End Role="Coef" Type="Self.Coef" Multiplicity="1" />
+          <End Role="Manager" Type="Self.Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="CoefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Executor">
+          <End Role="Executor" Type="Self.Executor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Executor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="ExecutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Kind">
+          <End Role="Kind" Type="Self.Kind" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="KindId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище eSoftModelContainer">
+          <EntitySet Name="Coef" EntityType="Self.Coef" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Executor" EntityType="Self.Executor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradeCoef" EntityType="Self.GradeCoef" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kind" EntityType="Self.Kind" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Coef_GradeCoef" Association="Self.FK_Coef_GradeCoef">
+            <End Role="GradeCoef" EntitySet="GradeCoef" />
+            <End Role="Coef" EntitySet="Coef" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Executor_Grade" Association="Self.FK_Executor_Grade">
+            <End Role="Grade" EntitySet="Grade" />
+            <End Role="Executor" EntitySet="Executor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Executor_Manager" Association="Self.FK_Executor_Manager">
+            <End Role="Manager" EntitySet="Manager" />
+            <End Role="Executor" EntitySet="Executor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_Coef" Association="Self.FK_Manager_Coef">
+            <End Role="Coef" EntitySet="Coef" />
+            <End Role="Manager" EntitySet="Manager" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Executor" Association="Self.FK_Task_Executor">
+            <End Role="Executor" EntitySet="Executor" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Kind" Association="Self.FK_Task_Kind">
+            <End Role="Kind" EntitySet="Kind" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Status" Association="Self.FK_Task_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eSoftModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="eSoftEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Coefs" EntityType="eSoftModel.Coef" />
+          <EntitySet Name="Executors" EntityType="eSoftModel.Executor" />
+          <EntitySet Name="Grades" EntityType="eSoftModel.Grade" />
+          <EntitySet Name="GradeCoefs" EntityType="eSoftModel.GradeCoef" />
+          <EntitySet Name="Kinds" EntityType="eSoftModel.Kind" />
+          <EntitySet Name="Managers" EntityType="eSoftModel.Manager" />
+          <EntitySet Name="Status" EntityType="eSoftModel.Status" />
+          <EntitySet Name="Tasks" EntityType="eSoftModel.Task" />
+          <AssociationSet Name="FK_Coef_GradeCoef" Association="eSoftModel.FK_Coef_GradeCoef">
+            <End Role="GradeCoef" EntitySet="GradeCoefs" />
+            <End Role="Coef" EntitySet="Coefs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Manager_Coef" Association="eSoftModel.FK_Manager_Coef">
+            <End Role="Coef" EntitySet="Coefs" />
+            <End Role="Manager" EntitySet="Managers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Executor_Grade" Association="eSoftModel.FK_Executor_Grade">
+            <End Role="Grade" EntitySet="Grades" />
+            <End Role="Executor" EntitySet="Executors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Executor_Manager" Association="eSoftModel.FK_Executor_Manager">
+            <End Role="Manager" EntitySet="Managers" />
+            <End Role="Executor" EntitySet="Executors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Executor" Association="eSoftModel.FK_Task_Executor">
+            <End Role="Executor" EntitySet="Executors" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Kind" Association="eSoftModel.FK_Task_Kind">
+            <End Role="Kind" EntitySet="Kinds" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Task_Status" Association="eSoftModel.FK_Task_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Coef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Analysis" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Deployment" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Support" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Time" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Difficulty" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Transfer" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="GradeCoefId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GradeCoef" Relationship="eSoftModel.FK_Coef_GradeCoef" FromRole="Coef" ToRole="GradeCoef" />
+          <NavigationProperty Name="Managers" Relationship="eSoftModel.FK_Manager_Coef" FromRole="Coef" ToRole="Manager" />
+        </EntityType>
+        <EntityType Name="Executor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GradeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ManagerId" Type="Int32" />
+          <Property Name="IV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="V" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Grade" Relationship="eSoftModel.FK_Executor_Grade" FromRole="Executor" ToRole="Grade" />
+          <NavigationProperty Name="Manager" Relationship="eSoftModel.FK_Executor_Manager" FromRole="Executor" ToRole="Manager" />
+          <NavigationProperty Name="Tasks" Relationship="eSoftModel.FK_Task_Executor" FromRole="Executor" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Executors" Relationship="eSoftModel.FK_Executor_Grade" FromRole="Grade" ToRole="Executor" />
+        </EntityType>
+        <EntityType Name="GradeCoef">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Junior" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Middle" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Senior" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Coefs" Relationship="eSoftModel.FK_Coef_GradeCoef" FromRole="GradeCoef" ToRole="Coef" />
+        </EntityType>
+        <EntityType Name="Kind">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tasks" Relationship="eSoftModel.FK_Task_Kind" FromRole="Kind" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Manager">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CoefId" Type="Int32" Nullable="false" />
+          <Property Name="IV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="V" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Coef" Relationship="eSoftModel.FK_Manager_Coef" FromRole="Manager" ToRole="Coef" />
+          <NavigationProperty Name="Executors" Relationship="eSoftModel.FK_Executor_Manager" FromRole="Manager" ToRole="Executor" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tasks" Relationship="eSoftModel.FK_Task_Status" FromRole="Status" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Difficulty" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="KindId" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Precision="3" />
+          <Property Name="FinishTime" Type="DateTime" Precision="3" />
+          <Property Name="CompleteDate" Type="DateTime" Precision="0" />
+          <Property Name="CompletePeriod" Type="Int32" />
+          <Property Name="CompleteTime" Type="Int32" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExecutorId" Type="Int32" />
+          <NavigationProperty Name="Executor" Relationship="eSoftModel.FK_Task_Executor" FromRole="Task" ToRole="Executor" />
+          <NavigationProperty Name="Kind" Relationship="eSoftModel.FK_Task_Kind" FromRole="Task" ToRole="Kind" />
+          <NavigationProperty Name="Status" Relationship="eSoftModel.FK_Task_Status" FromRole="Task" ToRole="Status" />
+        </EntityType>
+        <Association Name="FK_Coef_GradeCoef">
+          <End Type="eSoftModel.GradeCoef" Role="GradeCoef" Multiplicity="1" />
+          <End Type="eSoftModel.Coef" Role="Coef" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GradeCoef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Coef">
+              <PropertyRef Name="GradeCoefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Manager_Coef">
+          <End Type="eSoftModel.Coef" Role="Coef" Multiplicity="1" />
+          <End Type="eSoftModel.Manager" Role="Manager" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coef">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Manager">
+              <PropertyRef Name="CoefId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Executor_Grade">
+          <End Type="eSoftModel.Grade" Role="Grade" Multiplicity="1" />
+          <End Type="eSoftModel.Executor" Role="Executor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grade">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Executor">
+              <PropertyRef Name="GradeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Executor_Manager">
+          <End Type="eSoftModel.Manager" Role="Manager" Multiplicity="0..1" />
+          <End Type="eSoftModel.Executor" Role="Executor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manager">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Executor">
+              <PropertyRef Name="ManagerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Executor">
+          <End Type="eSoftModel.Executor" Role="Executor" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="eSoftModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Executor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="ExecutorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Kind">
+          <End Type="eSoftModel.Kind" Role="Kind" Multiplicity="1" />
+          <End Type="eSoftModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kind">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="KindId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Task_Status">
+          <End Type="eSoftModel.Status" Role="Status" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="eSoftModel.Task" Role="Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище eSoftModelContainer" CdmEntityContainer="eSoftEntities">
+          <EntitySetMapping Name="Coefs">
+            <EntityTypeMapping TypeName="eSoftModel.Coef">
+              <MappingFragment StoreEntitySet="Coef">
+                <ScalarProperty Name="GradeCoefId" ColumnName="GradeCoefId" />
+                <ScalarProperty Name="Transfer" ColumnName="Transfer" />
+                <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Support" ColumnName="Support" />
+                <ScalarProperty Name="Deployment" ColumnName="Deployment" />
+                <ScalarProperty Name="Analysis" ColumnName="Analysis" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Executors">
+            <EntityTypeMapping TypeName="eSoftModel.Executor">
+              <MappingFragment StoreEntitySet="Executor">
+                <ScalarProperty Name="V" ColumnName="V" />
+                <ScalarProperty Name="IV" ColumnName="IV" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="GradeId" ColumnName="GradeId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grades">
+            <EntityTypeMapping TypeName="eSoftModel.Grade">
+              <MappingFragment StoreEntitySet="Grade">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradeCoefs">
+            <EntityTypeMapping TypeName="eSoftModel.GradeCoef">
+              <MappingFragment StoreEntitySet="GradeCoef">
+                <ScalarProperty Name="Senior" ColumnName="Senior" />
+                <ScalarProperty Name="Middle" ColumnName="Middle" />
+                <ScalarProperty Name="Junior" ColumnName="Junior" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kinds">
+            <EntityTypeMapping TypeName="eSoftModel.Kind">
+              <MappingFragment StoreEntitySet="Kind">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Managers">
+            <EntityTypeMapping TypeName="eSoftModel.Manager">
+              <MappingFragment StoreEntitySet="Manager">
+                <ScalarProperty Name="V" ColumnName="V" />
+                <ScalarProperty Name="IV" ColumnName="IV" />
+                <ScalarProperty Name="CoefId" ColumnName="CoefId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="eSoftModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="eSoftModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="ExecutorId" ColumnName="ExecutorId" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="CompleteTime" ColumnName="CompleteTime" />
+                <ScalarProperty Name="CompletePeriod" ColumnName="CompletePeriod" />
+                <ScalarProperty Name="CompleteDate" ColumnName="CompleteDate" />
+                <ScalarProperty Name="FinishTime" ColumnName="FinishTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="KindId" ColumnName="KindId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="ESoftApplication.Pages.WindowManagerEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ESoftApplication.Pages"
+        mc:Ignorable="d"
+        Title="Изменение пароля" Height="388.168" Width="623.663" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel  VerticalAlignment="Center" HorizontalAlignment="Center">
+
+            <TextBlock   >Старый пароль:</TextBlock>
+            <PasswordBox   Margin="0 16 0 16" Name="TbOldPassword"   ></PasswordBox>
+            <TextBlock   >Новый пароль:</TextBlock>
+            <PasswordBox   Margin="0 16 0 16" Name="TbNewPassword"   ></PasswordBox>
+            <TextBlock   >Повторите пароль:</TextBlock>
+            <PasswordBox   Margin="0 16 0 32" Name="TbNewPassword2"   ></PasswordBox>
+            <StackPanel Orientation="Horizontal">
+                <Button Width="180" Margin="0 0 16 0" Name="btnSave" Click="btnSave_Click"  >Сохранить</Button>
+                <Button Width="180" Name="btnClose" Click="btnClose_Click"  >Закрыть</Button>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>
